@@ -1,0 +1,44 @@
+<meta aframe-injected="" name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no,user-scalable=no,minimal-ui">
+<meta aframe-injected="" name="mobile-web-app-capable" content="yes">
+
+<script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"></script>
+
+<div class="AR-tip">
+	<p>This is a AR-pen. To see 3d models use <a style="white-space: nowrap" class="links" target="_blank" href="https://github.com/stardanish/filess/blob/master/pattern-she.png">she-marker</a></p>
+	<a class="gotit" href="#">Got it!</a>
+</div>
+
+<div class="btns-wrap">
+	<div class="btn rotate"></div>
+	<div class="btn scale"></div>
+	<div class="btn switch">Kyiv</div>
+</div>
+
+<a-scene embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;' >
+	
+	<a-assets>
+		<a-asset-item id="london-obj" src="https://raw.githubusercontent.com/stardanish/filess/master/AR.obj"></a-asset-item>
+		<a-asset-item id="london-mtl" src="https://raw.githubusercontent.com/stardanish/filess/master/AR.mtl"></a-asset-item>
+
+	</a-assets>
+
+	<a-marker preset="she" id="aframe-scene">
+		
+		<a-entity light="type: hemisphere; color: #fefddd; groundColor: #fefddd; intensity: 1.2"></a-entity>
+		
+		<a-entity id="london" rotation="-90 0 0" side="double" position="0.0 0.2 0" scale="0.1 0.1 0.1" obj-model="obj: #london-obj; mtl: #london-mtl">
+			<a-animation attribute="rotation" begin="rotate" end="endRotate" dur="26000" fill="forwards" to="0 270 0" repeat="indefinite" easing="linear">
+			</a-animation>
+		</a-entity>
+		
+		<a-entity id="kyiv" visible="false" rotation="0 -90 0" side="double" position="0.0 0.2 0" scale="0.4 0.4 0.4" obj-model="obj: #kyiv-obj; mtl: #kyiv-mtl">
+			<a-animation attribute="rotation" begin="rotate" end="endRotate" dur="26000" fill="forwards" to="0 270 0" repeat="indefinite" easing="linear">
+			</a-animation>
+		</a-entity>
+		
+	</a-marker>
+	
+	<a-entity camera></a-entity>
+	
+</a-scene>
